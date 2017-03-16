@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+  <head>
+    <link rel="stylesheet" type="text/css" href="../..//static/css/ere.css" th:href="@{/static/css/ere.css}"/>
+    <script type="text/javascript" src="../..//static/js/ere.js" th:src="@{/static/js/ere.js}"></script>
+    <title th:text="#{add_user.title}">Add User</title>
+  </head>
+  <body>
+    <h1 class="style-guide" th:text="#{add_user.title}">Add User</h1>
+    <form action="#" th:action="@{/adduser}" th:object="${user}" method="post">
+    <ul th:if="${#fields.hasErrors('*')}">
+      <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+    </ul>
+    <label th:text="#{add_user.input.username}">Username</label>:<input type="text" th:field="*{username}" th:errorClass="error"/><br/>
+    <label th:text="#{add_user.input.password}">Password</label>:<input type="text" th:field="*{password}" th:errorClass="error"/><br/>
+    <label th:text="#{add_user.input.email}">Email</label>:<input type="text" th:field="*{email}" th:errorClass="error"/><br/>
+    <label th:text="#{add_user.input.roles}">Roles</label>:<select th:field="*{roles}" multiple="multiple" th:errorClass="error">
+      <option th:each="role : ${allRoles}" 
+              th:value="${role.name}" 
+              th:text="${role.name}">NO_ROLE</option>
+    </select><br/>
+    <button type="submit" th:text="#{add_user.create}">Add User</button>
+    </form>
+  </body>
+</html>

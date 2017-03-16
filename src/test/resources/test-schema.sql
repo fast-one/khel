@@ -1,0 +1,2 @@
+DROP SEQUENCE IF EXISTS ere_seq;
+CREATE SEQUENCE ere_seq;

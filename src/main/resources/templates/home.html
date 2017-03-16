@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+  <head>
+    <link rel="stylesheet" type="text/css" href="/static/css/ere.css" th:href="@{/static/css/ere.css}"/>
+    <script type="text/javascript" src="/static/js/ere.js" th:src="@{/static/js/ere.js}"></script>
+    <title th:text="#{home.title}">Home</title>
+  </head>
+  <body>
+    <h1 class="style-guide" th:text="#{home.title}">Home</h1>
+  </body>
+  <a href="/addrole" th:text="#{home.add.role}" sec:authorize="hasAuthority('ADD_ROLE')">Add Role</a><br/>
+  <a href="/adduser" th:text="#{home.add.user}" sec:authorize="hasAuthority('ADD_USER')">Add User</a><br/>
+  <form th:action="@{/logout}" method="post">
+    <button type="submit" th:text="#{home.logout}">Logout</button>
+  </form>
+</html>

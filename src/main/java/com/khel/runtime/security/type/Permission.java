@@ -1,0 +1,20 @@
+package com.khel.runtime.security.type;
+
+public enum Permission
+{
+  ADD_USER,
+  DELETE_USER,
+  EDIT_USER,
+  ADD_PLAYER,
+  DELETE_PLAYER,
+  EDIT_PLAYER,
+  ADD_FIELD,
+  ADD_GAME,
+  ADD_SCHEDULE,
+  REGISTER_EVENT,
+  ADMIN_HOME,
+  PLAYER_HOME,
+  ORGANIZER_HOME,
+  SUPPORT_HOME,
+  UPDATE_USER_PASSWORD
+}

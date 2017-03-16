@@ -1,0 +1,11 @@
+truncate table ADDRESS;
+truncate table ADDRESS_M;
+truncate table PERSON;
+truncate table PERSON_M;
+truncate table PERSON_PHONE_NUMBER;
+truncate table PERSON_PHONE_NUMBER_M;
+truncate table ERE_AUDIT;
+truncate table PERSON_ADDRESS;
+truncate table PERSON_ADDRESS_M;
+truncate table CUSTOM_EVENT;
+truncate table CUSTOM_EVENT_M;

@@ -1,0 +1,2 @@
+#Bootstrap Thymeleaf 3 config
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.khel.config.ThymeleafConfig
