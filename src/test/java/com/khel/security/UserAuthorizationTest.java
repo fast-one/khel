@@ -1,4 +1,4 @@
-package com.khel.service;
+package com.khel.security;
 
 import com.khel.runtime.security.model.Role;
 import com.khel.runtime.security.model.User;
@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 //@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-public class UserServiceAuthorizationTest
+public class UserAuthorizationTest
 {
   public static final String USER_NAME = "testme";
   @Autowired

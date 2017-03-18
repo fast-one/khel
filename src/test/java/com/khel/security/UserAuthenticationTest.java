@@ -1,4 +1,4 @@
-package com.khel.service;
+package com.khel.security;
 
 import com.khel.runtime.security.service.SecureService;
 import org.junit.After;
@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class AuthenticationTest
+public class UserAuthenticationTest
 {
   @Autowired
   private ApplicationContext context;
