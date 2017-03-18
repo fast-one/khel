@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "custom_audit")
+@Table(name = "app_audit")
 @RevisionEntity(CustomRevisionListener .class)
 public class CustomRevisionEntity implements Serializable
 {

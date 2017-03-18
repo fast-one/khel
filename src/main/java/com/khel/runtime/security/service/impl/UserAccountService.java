@@ -1,16 +1,14 @@
 package com.khel.runtime.security.service.impl;
 
+import com.khel.runtime.security.dao.UserDao;
 import com.khel.runtime.security.model.User;
 import com.khel.runtime.security.model.UserAccount;
-import com.khel.runtime.security.dao.UserDao;
 import com.khel.runtime.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
