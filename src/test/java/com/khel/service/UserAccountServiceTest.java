@@ -2,13 +2,14 @@ package com.khel.service;
 
 import com.khel.runtime.security.model.User;
 import com.khel.runtime.security.model.UserAccount;
-import com.khel.runtime.security.service.impl.UserAccountService;
+import com.khel.runtime.security.service.UserService;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,13 +22,14 @@ public class UserAccountServiceTest
   @Rule
   public ExpectedException exception = ExpectedException.none();
   @Autowired
-  UserAccountService userAccountService;
+  UserService userService;
   
   @Test
+  @WithMockUser(authorities = {"ADD_USER"})
   public void createUser()
   {
     User user = initUser();
-    UserAccount userAccount = userAccountService.createNewUserAccount(user);
+    UserAccount userAccount = userService.createNewUserAccount(user);
     assertThat(userAccount).isNotNull();
   }
 

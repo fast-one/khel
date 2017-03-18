@@ -30,6 +30,7 @@ public class EnversConfig  extends HibernateJpaAutoConfiguration
     vendorProperties.put("org.hibernate.envers.revision_type_field_name", "transaction_type");
     vendorProperties.put("hibernate.show_sql", "true");
     vendorProperties.put("hibernate.format_sql", "true");
+    vendorProperties.put("hibernate.dialect", "org.hibernate.spatial.dialect.postgis.PostgisDialect");
   }
 
 }
