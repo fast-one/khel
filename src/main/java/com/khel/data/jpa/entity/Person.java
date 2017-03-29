@@ -27,13 +27,13 @@ public class Person extends PersistentEntity
           joinColumns = @JoinColumn(name = "person_id"),
           inverseJoinColumns = @JoinColumn(name = "address_id")
   )
-  private List<Address> addresses;
+  private List<GeoLocation> addresses;
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
   private List<PhoneNumber> phoneNumbers;
 
   public Person()
   {
-    this.addresses = new ArrayList<Address>();
+    this.addresses = new ArrayList<GeoLocation>();
     this.phoneNumbers = new ArrayList<PhoneNumber>();
   }
 
@@ -57,12 +57,12 @@ public class Person extends PersistentEntity
     this.lastName = lastName;
   }
 
-  public List<Address> getAddresses()
+  public List<GeoLocation> getAddresses()
   {
     return addresses;
   }
 
-  public void addAddress(Address address)
+  public void addAddress(GeoLocation address)
   {
     this.addresses.add(address);
   }

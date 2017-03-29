@@ -1,12 +1,11 @@
 package com.khel.service;
 
-import com.khel.data.jpa.dao.AddressDao;
+import com.khel.data.jpa.dao.GeoLocationDao;
 import com.khel.data.jpa.dao.PartialPersonDao;
 import com.khel.data.jpa.dao.PersonDao;
-import com.khel.data.jpa.entity.Address;
+import com.khel.data.jpa.entity.GeoLocation;
 import com.khel.data.jpa.entity.PartialPerson;
 import com.khel.data.jpa.entity.Person;
-import com.khel.data.jpa.type.EventType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.history.Revision;
 import org.springframework.data.history.Revisions;
@@ -23,7 +22,7 @@ public class PersonService
   @Autowired
   private PersonDao personDao;
   @Autowired
-  private AddressDao addressDao;
+  private GeoLocationDao addressDao;
   @Autowired
   private PartialPersonDao partialPersonDao;
 
@@ -115,7 +114,7 @@ public class PersonService
   }
 
   @Transactional
-  public Person savePersonAddress(Person person, Address address, int delay)
+  public Person savePersonAddress(Person person, GeoLocation address, int delay)
   {
     Person p = savePerson(person);
     //Pause for 30 seconds
@@ -127,23 +126,22 @@ public class PersonService
     {
       e.printStackTrace();
     }
-    Address a = saveAddress(address);
+    GeoLocation a = saveAddress(address);
     p.addAddress(a);
     return p;
   }
 
   // save an address
   @Transactional
-  private Address saveAddress(Address address)
+  private GeoLocation saveAddress(GeoLocation address)
   {
     return addressDao.save(address);
   }
 
-
-  public Person savePersonAddressNonTrans(Person person, Address address)
+  public Person savePersonAddressNonTrans(Person person, GeoLocation address)
   {
     Person p = savePerson(person);
-    Address a = saveAddress(address);
+    GeoLocation a = saveAddress(address);
     p.addAddress(a);
     return p;
   }

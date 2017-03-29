@@ -3,9 +3,7 @@ package com.khel.service;
 import com.khel.runtime.security.model.User;
 import com.khel.runtime.security.model.UserAccount;
 import com.khel.runtime.security.service.UserService;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,9 +16,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 public class UserAccountServiceTest
 {
-  //expected exceptions
-  @Rule
-  public ExpectedException exception = ExpectedException.none();
   @Autowired
   UserService userService;
   
