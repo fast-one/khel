@@ -1,6 +1,7 @@
 package com.khel.runtime.security.model;
 
 import com.khel.data.jpa.entity.PersistentEntity;
+import org.hibernate.annotations.WhereJoinTable;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.CascadeType;
@@ -37,6 +38,7 @@ public class User extends PersistentEntity
           joinColumns = @JoinColumn(name = "user_id"),
           inverseJoinColumns = @JoinColumn(name = "role_id")
   )
+  @WhereJoinTable(clause = "active_flag='TRUE'")
   private Set<Role> roles;
 
   public User()
