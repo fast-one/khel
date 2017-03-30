@@ -5,8 +5,7 @@ import javax.persistence.PreRemove;
 /**
  * Created by RKasturi on 12/21/2016.
  */
-
-public class RemoveListener
+public class EntityListener
 {
 
   @PreRemove

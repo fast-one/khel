@@ -1,12 +1,12 @@
 package com.khel.runtime.security.model;
 
-import java.util.Collection;
-import java.util.HashSet;
-
 import com.khel.runtime.security.type.Permission;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.HashSet;
 
 public class UserAccount extends User implements UserDetails
 {
@@ -15,7 +15,7 @@ public class UserAccount extends User implements UserDetails
 
   public UserAccount(User user)
   {
-    super(user.getFirstName(), user.getLastName(), user.getEmail(), user.getMobile(), user.getUserName(), user.getPassword(), user.getRoles());
+    super(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getMobile(), user.getUserName(), user.getPassword(), user.getRoles());
     grantAutorities();
   }
 

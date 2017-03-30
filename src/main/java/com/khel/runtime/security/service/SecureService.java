@@ -10,9 +10,9 @@ public interface SecureService
   @PreAuthorize("authenticated")
   String secure();
 
-  @PreAuthorize("hasAuthority('ADMIN')")
+  @PreAuthorize("hasAuthority('PARTICIPANT')")
   String authorized();
 
-  @PreAuthorize("hasAuthority('PLAYER')")
+  @PreAuthorize("hasAuthority('ADMIN')")
   String denied();
 }

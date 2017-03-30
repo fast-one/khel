@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by RKasturi on 3/15/2017.
@@ -37,15 +37,16 @@ public class User extends PersistentEntity
           joinColumns = @JoinColumn(name = "user_id"),
           inverseJoinColumns = @JoinColumn(name = "role_id")
   )
-  private List<Role> roles;
+  private Set<Role> roles;
 
   public User()
   {
 
   }
 
-  public User(String firstName, String lastName, String email, String mobile, String userName, String password, List<Role> roles)
+  public User(Long userId, String firstName, String lastName, String email, String mobile, String userName, String password, Set<Role> roles)
   {
+    super.setId(userId);
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
@@ -115,12 +116,12 @@ public class User extends PersistentEntity
     this.password = password;
   }
 
-  public List<Role> getRoles()
+  public Set<Role> getRoles()
   {
-    return roles != null ? roles : Collections.emptyList();
+    return roles != null ? roles : Collections.emptySet();
   }
 
-  public void setRoles(List<Role> roles)
+  public void setRoles(Set<Role> roles)
   {
     this.roles = roles;
   }
