@@ -10,8 +10,20 @@ VALUES (4, TRUE, 'SUPPORT', 'This role is for support');
 -- admin
 INSERT INTO role_permission (role_id, permission, active_flag)
 VALUES (1, 'DELETE_USER', TRUE);
+INSERT INTO role_permission (role_id, permission, active_flag)
+VALUES (1, 'USER_REGISTER', TRUE);
+INSERT INTO role_permission (role_id, permission, active_flag)
+VALUES (1, 'USER_EDIT', TRUE);
+INSERT INTO role_permission (role_id, permission, active_flag)
+VALUES (1, 'UPDATE_USER_PASSWORD', TRUE);
 
 -- support
+INSERT INTO role_permission (role_id, permission, active_flag)
+VALUES (4, 'USER_REGISTER', TRUE);
+INSERT INTO role_permission (role_id, permission, active_flag)
+VALUES (4, 'USER_EDIT', TRUE);
+INSERT INTO role_permission (role_id, permission, active_flag)
+VALUES (4, 'UPDATE_USER_PASSWORD', TRUE);
 
 -- participants
 INSERT INTO role_permission (role_id, permission, active_flag)
@@ -32,6 +44,12 @@ INSERT INTO role_permission (role_id, permission, active_flag)
 VALUES (2, 'PARTICIPANT_REQUEST_REFUND', TRUE);
 
 -- Organizers
+INSERT INTO role_permission (role_id, permission, active_flag)
+VALUES (3, 'USER_REGISTER', TRUE);
+INSERT INTO role_permission (role_id, permission, active_flag)
+VALUES (2, 'USER_EDIT', TRUE);
+INSERT INTO role_permission (role_id, permission, active_flag)
+VALUES (2, 'UPDATE_USER_PASSWORD', TRUE);
 INSERT INTO role_permission (role_id, permission, active_flag)
 VALUES (3, 'ADD_GEO_LOCATION', TRUE);
 INSERT INTO role_permission (role_id, permission, active_flag)

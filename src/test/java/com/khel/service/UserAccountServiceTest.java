@@ -30,6 +30,7 @@ public class UserAccountServiceTest
   public static final String EMAIL = "test@testme.com";
   public static final String MOBILE_NUMBER = "1234567890";
   public static final String PASSWORD = "password";
+
   @Autowired
   UserService userService;
   User user;
@@ -77,7 +78,7 @@ public class UserAccountServiceTest
   public void updatePassword()
   {
     user = userService.registerParticipant(user);
-    userService.updateUserAccountPassword(user, NEW_PASSWORD);
+    userService.updateUserAccountPassword(user.getId(), NEW_PASSWORD);
     AuthenticationManager authenticationManager = this.context
             .getBean(AuthenticationManager.class);
     Authentication authentication = authenticationManager.authenticate(

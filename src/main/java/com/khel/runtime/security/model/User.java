@@ -22,28 +22,16 @@ import java.util.Set;
 @Table(name = "app_user")
 public class User extends PersistentEntity
 {
-
   String firstName;
   String lastName;
   String email;
   String mobile;
   String userName;
   String password;
-
-
-  @Size(min=1)
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinTable(
-          name = "user_role",
-          joinColumns = @JoinColumn(name = "user_id"),
-          inverseJoinColumns = @JoinColumn(name = "role_id")
-  )
-  @WhereJoinTable(clause = "active_flag='TRUE'")
   private Set<Role> roles;
 
   public User()
   {
-
   }
 
   public User(Long userId, String firstName, String lastName, String email, String mobile, String userName, String password, Set<Role> roles)
@@ -118,6 +106,14 @@ public class User extends PersistentEntity
     this.password = password;
   }
 
+  @Size(min = 1)
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinTable(
+          name = "user_role",
+          joinColumns = @JoinColumn(name = "user_id"),
+          inverseJoinColumns = @JoinColumn(name = "role_id")
+  )
+  @WhereJoinTable(clause = "active_flag='TRUE'")
   public Set<Role> getRoles()
   {
     return roles != null ? roles : Collections.emptySet();

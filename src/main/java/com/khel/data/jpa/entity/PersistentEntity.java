@@ -13,12 +13,12 @@ import javax.persistence.SequenceGenerator;
 @MappedSuperclass
 public abstract class PersistentEntity extends PersistentJoinEntity
 {
+  private Long id;
+
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq")
   @SequenceGenerator(name = "id_seq", sequenceName = "APP_SEQ", allocationSize=1)
   @Column(name = "id", updatable = false, nullable = false)
-  private Long id;
-
   public Long getId()
   {
     return id;

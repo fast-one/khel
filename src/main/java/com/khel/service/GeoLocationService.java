@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by RKasturi on 3/18/2017.
  */
-public interface AddressService
+public interface GeoLocationService
 {
   @Transactional
   @PreAuthorize("hasAuthority('ADD_ADDRESS')")

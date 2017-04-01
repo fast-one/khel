@@ -20,5 +20,9 @@ public interface UserService extends UserDetailsService
   UserAccount registerSupportUser(User user);
 
   @PreAuthorize("hasAuthority('UPDATE_USER_PASSWORD')")
-  void updateUserAccountPassword(User user, String password);
+  void updateUserAccountPassword(Long userId, String password);
+
+  @PreAuthorize("hasAuthority('USER_REGISTER')")
+  User findByUserId(Long userId);
+
 }

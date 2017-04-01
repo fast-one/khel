@@ -27,7 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AddressServiceTest
 {
   @Autowired
-  AddressService addressService;
+  GeoLocationService addressService;
 
   @Test
   @WithMockUser(authorities = {"ADD_ADDRESS"})

@@ -100,17 +100,22 @@ public class UserAccountService implements UserService
    * 
    * This exists as a separate method to keep the password
    * encryption consistent
-   * 
-   * @param user
+   *
+   * @param userId
    * @param password
    */
   @Override
   @Transactional
-  public void updateUserAccountPassword(User user, String password)
+  public void updateUserAccountPassword(Long userId, String password)
   {
-    user = userDao.findOne(user.getId());
+    User user = userDao.findOne(userId);
     user.setPassword(passwordEncoder.encode(password));
     userDao.save(user);
   }
 
+  @Override
+  public User findByUserId(Long userId)
+  {
+    return userDao.findOne(userId);
+  }
 }

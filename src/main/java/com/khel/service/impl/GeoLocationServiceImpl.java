@@ -2,33 +2,34 @@ package com.khel.service.impl;
 
 import com.khel.data.jpa.dao.GeoLocationDao;
 import com.khel.data.jpa.entity.GeoLocation;
+import com.khel.service.GeoLocationService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-public class AddressServiceImpl implements com.khel.service.AddressService
+public class GeoLocationServiceImpl implements GeoLocationService
 {
-  private GeoLocationDao addressDao;
+  private GeoLocationDao geoLocationDao;
 
-  public AddressServiceImpl(GeoLocationDao addressDao)
+  public GeoLocationServiceImpl(GeoLocationDao geoLocationDao)
   {
-    this.addressDao = addressDao;
+    this.geoLocationDao = geoLocationDao;
   }
 
   @Override
   @Transactional
   public GeoLocation createAddress(GeoLocation address)
   {
-    return addressDao.save(address);
+    return geoLocationDao.save(address);
   }
 
   @Override
   @Transactional
   public GeoLocation updateAddress(GeoLocation address)
   {
-    return addressDao.save(address);
+    return geoLocationDao.save(address);
   }
 
   @Override
@@ -41,6 +42,6 @@ public class AddressServiceImpl implements com.khel.service.AddressService
   @Override
   public GeoLocation findById(Long addressId)
   {
-    return addressDao.findOne(addressId);
+    return geoLocationDao.findOne(addressId);
   }
 }
