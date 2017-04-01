@@ -1,9 +1,11 @@
 package com.khel.service;
 
+import com.khel.holder.EventHolder;
 import com.khel.runtime.security.model.User;
 import com.khel.runtime.security.model.UserAccount;
 import com.khel.runtime.security.service.UserService;
 import com.khel.runtime.security.type.RoleType;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,6 +49,12 @@ public class UserAccountServiceTest
     user.setMobile(MOBILE_NUMBER);
     user.setUserName(USER_NAME);
     user.setPassword(PASSWORD);
+  }
+
+  @After
+  public void after()
+  {
+    EventHolder.reset();
   }
 
   @Test

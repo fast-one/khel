@@ -1,7 +1,10 @@
 package com.khel.security;
 
 import com.khel.helper.UserAuthenticationHelper;
+import com.khel.holder.EventHolder;
 import com.khel.runtime.security.service.SecureService;
+import com.khel.runtime.security.type.RoleType;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +39,13 @@ public class UserAuthenticationTest
   public void init()
   {
     SecurityContextHolder.clearContext();
-    this.authentication = userHelper.getAuthentication();
+    this.authentication = userHelper.getUserAuthentication(RoleType.PARTICIPANT);
+  }
+
+  @After
+  public void after()
+  {
+    EventHolder.reset();
   }
 
 

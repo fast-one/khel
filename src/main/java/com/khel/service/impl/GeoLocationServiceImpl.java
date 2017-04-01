@@ -1,7 +1,9 @@
 package com.khel.service.impl;
 
+import com.khel.aspect.Event;
 import com.khel.data.jpa.dao.GeoLocationDao;
 import com.khel.data.jpa.entity.GeoLocation;
+import com.khel.data.jpa.type.EventType;
 import com.khel.service.GeoLocationService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +22,7 @@ public class GeoLocationServiceImpl implements GeoLocationService
 
   @Override
   @Transactional
+  @Event(type = EventType.ADD_GEO_LOCATION)
   public GeoLocation createAddress(GeoLocation address)
   {
     return geoLocationDao.save(address);
@@ -27,6 +30,7 @@ public class GeoLocationServiceImpl implements GeoLocationService
 
   @Override
   @Transactional
+  @Event(type = EventType.EDIT_GEO_LOCATION)
   public GeoLocation updateAddress(GeoLocation address)
   {
     return geoLocationDao.save(address);

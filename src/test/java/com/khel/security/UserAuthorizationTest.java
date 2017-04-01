@@ -1,8 +1,10 @@
 package com.khel.security;
 
 import com.khel.helper.UserAuthenticationHelper;
-import com.khel.runtime.security.model.User;
+import com.khel.holder.EventHolder;
+import com.khel.runtime.security.model.UserAccount;
 import com.khel.runtime.security.service.UserService;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,12 +24,18 @@ public class UserAuthorizationTest
   UserService userService;
   @Autowired
   UserAuthenticationHelper userHelper;
-  User user;
+  UserAccount user;
 
   @Before
   public void init()
   {
-    user = userHelper.createUser();
+    user = userHelper.registerParticipant();
+  }
+
+  @After
+  public void after()
+  {
+    EventHolder.reset();
   }
 
   @Test(expected = org.springframework.security.authentication.AuthenticationCredentialsNotFoundException.class)

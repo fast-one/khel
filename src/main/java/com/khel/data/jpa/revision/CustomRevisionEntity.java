@@ -7,6 +7,8 @@ import org.hibernate.envers.RevisionTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -29,7 +31,7 @@ public class CustomRevisionEntity implements Serializable
 
   @Column(name = "user_id")
   private Long userId;
-
+  @Enumerated(EnumType.STRING)
   @Column(name = "event_type")
   private EventType eventType;
 

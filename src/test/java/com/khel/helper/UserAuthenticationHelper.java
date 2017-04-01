@@ -3,6 +3,7 @@ package com.khel.helper;
 import com.khel.runtime.security.model.User;
 import com.khel.runtime.security.model.UserAccount;
 import com.khel.runtime.security.service.UserService;
+import com.khel.runtime.security.type.RoleType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,9 +27,9 @@ public class UserAuthenticationHelper
   @Autowired
   private ApplicationContext context;
 
-  public Authentication getAuthentication()
+  public Authentication getUserAuthentication(RoleType roleType)
   {
-    createUser();
+    registerUser(roleType);
     AuthenticationManager authenticationManager = this.context
             .getBean(AuthenticationManager.class);
     Authentication authentication = authenticationManager.authenticate(
@@ -37,7 +38,12 @@ public class UserAuthenticationHelper
     return authentication;
   }
 
-  public UserAccount createUser()
+  public UserAccount registerParticipant()
+  {
+    return registerUser(RoleType.PARTICIPANT);
+  }
+
+  private UserAccount registerUser(RoleType roleType)
   {
     User user = new User();
     user.setEmail(EMAIL);
@@ -46,7 +52,19 @@ public class UserAuthenticationHelper
     user.setMobile(MOBILE_NUMBER);
     user.setUserName(USER_NAME);
     user.setPassword(PASSWORD);
-    UserAccount userAccount = userService.registerParticipant(user);
+    UserAccount userAccount = null;
+    switch (roleType)
+    {
+      case ORGANIZER:
+        userAccount = userService.registerOrganizer(user);
+        break;
+      case SUPPORT:
+        userAccount = userService.registerSupportUser(user);
+        break;
+      default:
+        userAccount = userService.registerParticipant(user);
+        break;
+    }
     return userAccount;
   }
 }

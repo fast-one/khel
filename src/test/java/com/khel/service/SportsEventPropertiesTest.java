@@ -4,9 +4,12 @@ import com.khel.data.jpa.entity.SportsEvent;
 import com.khel.data.jpa.type.SportsEventCategory;
 import com.khel.data.jpa.type.SportsEventType;
 import com.khel.helper.UserAuthenticationHelper;
+import com.khel.holder.EventHolder;
 import com.khel.runtime.security.model.UserAccount;
 import com.khel.runtime.security.service.UserService;
+import com.khel.runtime.security.type.RoleType;
 import org.json.simple.JSONObject;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Sql("classpath:/user-truncate.sql")
-public class SportsEventServiceTest
+public class SportsEventPropertiesTest
 {
   public static final String[][] details = {
           {"foo", "bar"},
@@ -40,8 +43,15 @@ public class SportsEventServiceTest
   @Before
   public void init()
   {
-    sportsEvent = getSportsEvent(userHelper.getAuthentication());
-    sportsEvent = sportsEventService.saveSportsEvent(sportsEvent);
+    sportsEvent = getSportsEvent(userHelper.getUserAuthentication(RoleType.ORGANIZER));
+    EventHolder.reset();
+    sportsEvent = sportsEventService.createSportsEvent(sportsEvent);
+  }
+
+  @After
+  public void after()
+  {
+    EventHolder.reset();
   }
 
   private SportsEvent getSportsEvent(Authentication authentication)

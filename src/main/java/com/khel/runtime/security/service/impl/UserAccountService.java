@@ -1,5 +1,7 @@
 package com.khel.runtime.security.service.impl;
 
+import com.khel.aspect.Event;
+import com.khel.data.jpa.type.EventType;
 import com.khel.runtime.security.dao.RoleDao;
 import com.khel.runtime.security.dao.UserDao;
 import com.khel.runtime.security.model.User;
@@ -54,6 +56,7 @@ public class UserAccountService implements UserService
    */
   @Override
   @Transactional
+  @Event(type = EventType.PARTICIPANT_REGISTER)
   public UserAccount registerParticipant(User user)
   {
     user.setRoles(new HashSet<>(Arrays.asList(roleDao.findByName(RoleType.PARTICIPANT.name()))));
@@ -68,6 +71,7 @@ public class UserAccountService implements UserService
    */
   @Override
   @Transactional
+  @Event(type = EventType.ORGANIZER_REGISTER)
   public UserAccount registerOrganizer(User user)
   {
     user.setRoles(new HashSet<>(Arrays.asList(roleDao.findByName(RoleType.ORGANIZER.name()))));
@@ -82,6 +86,7 @@ public class UserAccountService implements UserService
    */
   @Override
   @Transactional
+  @Event(type = EventType.SUPPORT_REGISTER)
   public UserAccount registerSupportUser(User user)
   {
     user.setRoles(new HashSet<>(Arrays.asList(roleDao.findByName(RoleType.SUPPORT.name()))));
@@ -106,6 +111,7 @@ public class UserAccountService implements UserService
    */
   @Override
   @Transactional
+  @Event(type = EventType.UPDATE_USER_PASSWORD)
   public void updateUserAccountPassword(Long userId, String password)
   {
     User user = userDao.findOne(userId);

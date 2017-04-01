@@ -11,11 +11,10 @@ import java.util.List;
  */
 public interface GeoLocationService
 {
-  @Transactional
-  @PreAuthorize("hasAuthority('ADD_ADDRESS')")
+  @PreAuthorize("hasAuthority('ADD_GEO_LOCATION')")
   GeoLocation createAddress(GeoLocation address);
 
-  @Transactional
+  @PreAuthorize("hasAuthority('EDIT_GEO_LOCATION')")
   GeoLocation updateAddress(GeoLocation address);
 
   @Transactional(readOnly = true)
