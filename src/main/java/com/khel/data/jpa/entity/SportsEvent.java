@@ -27,7 +27,7 @@ public class SportsEvent extends PersistentEntity
   Integer minParticipants;
   Integer maxParticipants;
   JSONObject details;
-  private Long appUserId;
+  private Long organizerId;
 
   public String getName()
   {
@@ -94,13 +94,13 @@ public class SportsEvent extends PersistentEntity
     this.details = details;
   }
 
-  public Long getAppUserId()
+  public Long getOrganizerId()
   {
-    return appUserId;
+    return organizerId;
   }
 
-  public void setAppUserId(Long appUserId)
+  public void setOrganizerId(Long organizerId)
   {
-    this.appUserId = appUserId;
+    this.organizerId = organizerId;
   }
 }

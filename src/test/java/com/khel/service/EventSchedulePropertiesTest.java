@@ -1,7 +1,7 @@
 package com.khel.service;
 
-import com.khel.data.jpa.entity.SportsEvent;
-import com.khel.helper.SportsEventHelper;
+import com.khel.data.jpa.entity.EventSchedule;
+import com.khel.helper.EventScheduleHelper;
 import com.khel.helper.UserAuthenticationHelper;
 import com.khel.holder.EventHolder;
 import com.khel.runtime.security.service.UserService;
@@ -16,20 +16,25 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Sql("classpath:/user-truncate.sql")
-public class SportsEventPropertiesTest
+public class EventSchedulePropertiesTest
 {
   @Autowired
   UserAuthenticationHelper userHelper;
   @Autowired
-  SportsEventHelper sportsEventHelper;
+  EventScheduleHelper eventScheduleHelper;
   @Autowired
   UserService userService;
-  SportsEvent sportsEvent;
+  @Autowired
+  EventScheduleService eventScheduleService;
+  EventSchedule eventSchedule;
 
   @Before
   public void init()
@@ -37,7 +42,7 @@ public class SportsEventPropertiesTest
     EventHolder.reset();
     userHelper.getUserAuthentication(RoleType.ORGANIZER);
     EventHolder.reset();
-    sportsEvent = sportsEventHelper.createSportsEvent();
+    eventSchedule = eventScheduleService.findById(eventScheduleHelper.createEventSchedule().getId());
   }
 
   @After
@@ -46,54 +51,54 @@ public class SportsEventPropertiesTest
     EventHolder.reset();
   }
 
-
   @Test
   public void testId() throws Exception
   {
-    assertThat(sportsEvent.getId()).isNotNull();
+    assertThat(eventSchedule.getId()).isNotNull();
   }
 
   @Test
   public void testSportsEventName() throws Exception
   {
-    assertThat(sportsEvent.getName()).isEqualTo(SportsEventHelper.NAME);
+    assertThat(eventSchedule.getName()).isEqualTo(EventScheduleHelper.NAME);
   }
 
   @Test
-  public void testMinParticipants() throws Exception
+  public void testStartDate() throws Exception
   {
-    assertThat(sportsEvent.getMinParticipants()).isEqualTo(SportsEventHelper.MIN_PARTICIPANTS);
+    Date testDate = new SimpleDateFormat("yyyyMMdd").parse(EventScheduleHelper.STATE_DATE);
+    assertThat(eventSchedule.getStartTime()).hasSameTimeAs(testDate);
   }
 
   @Test
-  public void testMaxParticipants() throws Exception
+  public void testDuration() throws Exception
   {
-    assertThat(sportsEvent.getMaxParticipants()).isEqualTo(SportsEventHelper.MAX_PARTICIPANTS);
+    assertThat(eventSchedule.getDuration()).isEqualTo(EventScheduleHelper.DURATION);
   }
 
   @Test
-  public void testType() throws Exception
+  public void testGeoLocation() throws Exception
   {
-    assertThat(sportsEvent.getId()).isNotNull();
+    assertThat(eventSchedule.getGeoLocation()).isNotNull();
   }
 
   @Test
-  public void testCategory() throws Exception
+  public void testEvent() throws Exception
   {
-    assertThat(sportsEvent.getId()).isNotNull();
+    assertThat(eventSchedule.getSportsEvent()).isNotNull();
   }
 
   @Test
   public void testAppUserId() throws Exception
   {
-    assertThat(userService.findByUserId(sportsEvent.getOrganizerId())).isNotNull();
+    assertThat(userService.findByUserId(eventSchedule.getOrganizerId())).isNotNull();
   }
 
   @Test
   public void testDetails() throws Exception
   {
-    JSONObject jsonObject = sportsEvent.getDetails();
-    for (String[] pair : SportsEventHelper.details)
+    JSONObject jsonObject = eventSchedule.getDetails();
+    for (String[] pair : EventScheduleHelper.details)
     {
       String val = (String) jsonObject.get(pair[0]);
       assertThat(val).isEqualTo(pair[1]);
